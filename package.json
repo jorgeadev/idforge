@@ -1,0 +1,46 @@
+{
+  "name": "idforge",
+  "version": "1.0.0",
+  "description": "A lightweight, zero-dependency UUID v4 generator — forge your own IDs",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts --clean",
+    "test": "jest",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "prepublishOnly": "npm run lint && npm run test && npm run build"
+  },
+  "keywords": [
+    "uuid",
+    "uuidv4",
+    "uuid-generator",
+    "id",
+    "identifier",
+    "random",
+    "zero-dependency"
+  ],
+  "author": "jorgeadev",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@typescript-eslint/eslint-plugin": "^7.13.1",
+    "@typescript-eslint/parser": "^7.13.1",
+    "eslint": "^8.57.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.2",
+    "tsup": "^8.1.0",
+    "typescript": "^5.5.2"
+  }
+}
