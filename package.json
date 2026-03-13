@@ -1,0 +1,25 @@
+{
+  "name": "idforge",
+  "version": "0.0.0",
+  "description": "A custom unique ID generator — no external dependencies.",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "node --test src/__tests__/idforge.test.ts",
+    "lint": "tsc --noEmit"
+  },
+  "keywords": [
+    "id",
+    "generator",
+    "uuid",
+    "unique"
+  ],
+  "author": "jorgeadev",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.4.5",
+    "@types/node": "^20.12.7"
+  }
+}
