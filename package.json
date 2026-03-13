@@ -1,23 +1,45 @@
 {
   "name": "idforge",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "A custom unique ID generator — no external dependencies.",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc",
-    "test": "node --test src/__tests__/idforge.test.ts",
+    "test": "node --experimental-strip-types --test src/__tests__/idforge.test.ts",
     "lint": "tsc --noEmit"
   },
   "keywords": [
     "id",
     "generator",
     "uuid",
-    "unique"
+    "nanoid",
+    "unique",
+    "crypto"
   ],
   "author": "jorgeadev",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jorgeadev/idforge.git"
+  },
+  "homepage": "https://github.com/jorgeadev/idforge#readme",
+  "bugs": {
+    "url": "https://github.com/jorgeadev/idforge/issues"
+  },
+  "engines": {
+    "node": ">=20"
+  },
   "devDependencies": {
     "typescript": "^5.4.5",
     "@types/node": "^20.12.7"
