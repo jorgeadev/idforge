@@ -1,8 +1,50 @@
 # idforge
 
-> A lightweight, zero-dependency UUID v4 generator — forge your own IDs.
+> v0.0.0 — A custom unique ID generator with **zero runtime dependencies**.
 
-**idforge** is a drop-in replacement for the `uuidv4` npm package. It uses Node.js's built-in `crypto` module to produce cryptographically strong, RFC 4122-compliant UUID v4 strings with no external runtime dependencies.
+No `uuidv4`, no `nanoid`, no third-party packages needed at runtime.  
+Everything is built from scratch on top of the Web Crypto API that ships with Node.js ≥ 15.
+
+---
+
+## Functions
+
+### `generateUUID(): string`
+
+Returns a standards-compliant **UUID v4** string
+(`xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx`) generated entirely from
+`crypto.getRandomValues`.
+
+```ts
+import { generateUUID } from "idforge";
+
+generateUUID(); // "f47ac10b-58cc-4372-a567-0e02b2c3d479"
+```
+
+### `generateNanoId(size?: number): string`
+
+Returns a compact, **URL-safe** random identifier of `size` characters
+(default **21**) drawn from `A-Z a-z 0-9 _ -`.
+
+```ts
+import { generateNanoId } from "idforge";
+
+generateNanoId();    // "dBj8yK-mRqNsW_fXtL7Oe"
+generateNanoId(10);  // "aB3_xZ-Kqp"
+```
+
+### `generateReadableId(): string`
+
+Returns a **human-readable** identifier in the form
+`<adjective>-<noun>-<4-hex-suffix>`.
+
+```ts
+import { generateReadableId } from "idforge";
+
+generateReadableId(); // "swift-river-3a9f"
+```
+
+---
 
 ## Installation
 
@@ -12,52 +54,18 @@ npm install idforge
 
 ## Usage
 
-### Generate a UUID v4
-
 ```ts
-import { uuidv4 } from 'idforge';
-
-const id = uuidv4();
-console.log(id); // e.g. "a3bb189e-8bf9-4888-9912-ace4e6543002"
+import { generateUUID, generateNanoId, generateReadableId } from "idforge";
 ```
 
-### Validate a UUID v4
+## Development
 
-```ts
-import { isUuidV4 } from 'idforge';
-
-isUuidV4('a3bb189e-8bf9-4888-9912-ace4e6543002'); // true
-isUuidV4('not-a-uuid');                            // false
+```bash
+npm install          # install dev dependencies (TypeScript only)
+npm run build        # compile to dist/
+npm test             # run tests with Node's built-in test runner
+npm run lint         # type-check with tsc --noEmit
 ```
-
-### CommonJS
-
-```js
-const { uuidv4, isUuidV4 } = require('idforge');
-```
-
-## API
-
-### `uuidv4(): string`
-
-Returns a new UUID version 4 string in the format `xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx`.
-
-- Uses `crypto.randomBytes` for cryptographically strong randomness.
-- Sets the version nibble to `4` and the variant bits per RFC 4122.
-
-### `isUuidV4(value: string): boolean`
-
-Returns `true` if `value` is a valid UUID v4 string, `false` otherwise. Accepts both lower-case and upper-case hex digits.
-
-## Why idforge?
-
-| Feature               | idforge | uuidv4 |
-|-----------------------|---------|--------|
-| Zero runtime deps     | ✅      | ❌     |
-| TypeScript-first      | ✅      | ✅     |
-| ESM + CJS             | ✅      | ✅     |
-| Built-in validation   | ✅      | ❌     |
-| Cryptographically secure | ✅   | ✅     |
 
 ## License
 
